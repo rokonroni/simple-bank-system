@@ -18,23 +18,31 @@ function setValue(elemnetId, value){
 }
 //deposit money
 document.getElementById('deposit_btn').addEventListener('click', function(){
-    const newValue = getValueById ('new-deposit');
-    const oldValue = getInnerTextById ('old-deposit');
-    const depositTotal = oldValue + newValue;
-    setValue ('old-deposit', depositTotal)
-    const oldTotal = getInnerTextById ('total-balance');
-    const newTotal = oldTotal + newValue;
-    setValue ('total-balance', newTotal);
-   
+        const newValue = getValueById ('new-deposit');
+        if (isNaN(newValue)) {
+           return alert ('Please Insert a valid number');
+        }
+        const oldValue = getInnerTextById ('old-deposit');
+        const depositTotal = oldValue + newValue;
+        setValue ('old-deposit', depositTotal)
+        const oldTotal = getInnerTextById ('total-balance');
+        const newTotal = oldTotal + newValue;
+        setValue ('total-balance', newTotal);
 })
 // Withdraw money 
 document.getElementById('withdraw_btn').addEventListener('click', function(){
     const newValue = getValueById ('new-withdraw');
+    if (isNaN(newValue)) {
+        return alert ('Please Insert a valid number');
+     }
     const oldValue = getInnerTextById ('old-withdraw');
     const withdrawTotal = oldValue + newValue;
-    setValue ('old-withdraw', withdrawTotal); 
 
     const oldTotal = getInnerTextById ('total-balance');
+    if (oldTotal < newValue) {
+        return alert('Can not withdraw more then Balance')
+    }
     const newTotal = oldTotal - newValue;
+    setValue ('old-withdraw', withdrawTotal); 
     setValue ('total-balance', newTotal);
 })
