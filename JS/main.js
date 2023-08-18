@@ -6,7 +6,7 @@ document.getElementById('submit_btn').addEventListener('click', function(){
     const emailValue = userEmail.value ;
     const passwordValue = userPassword.value;
     if (emailValue === 'testbank@gmail.com' && passwordValue === 'test123') {
-        window.location.assign('bank.html')       
+        window.location.href = "bank.html";       
     }
     else {
         alert ('Invalid User. Please check your email and password')
